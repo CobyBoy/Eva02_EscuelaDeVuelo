@@ -2,7 +2,7 @@ package ar.alejandroacosta.unlam.Eva02_EscuelaDeVuelo;
 
 public interface AlumnoRepository {
 	
-	public Boolean agregarAlumno(Alumno alumno);
+	public Boolean agregarAlumnoAAcademia(Alumno alumno);
 	
 	public Alumno buscarAlumno(Integer idAlumno);
 	

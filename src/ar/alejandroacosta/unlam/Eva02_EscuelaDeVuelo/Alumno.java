@@ -49,8 +49,11 @@ public class Alumno extends Persona implements PilotoRepository{
 		 this.setHorasDeVuelo(this.getHorasDeVuelo() + horas);
 		 return this.getHorasDeVuelo();
 	}
+	
+	
 	public void pilotearConInstructor(Alumno alumno, Instructor instructor, Integer horas) {		
 		this.setHorasDeVuelo(this.getHorasDeVuelo() + horas);
+		 this.horasDeVueloQueFaltanParaVolarSolo= this.horasDeVueloParaVolarSolo - this.getHorasDeVuelo();
 		instructor.setHorasDeVuelo(instructor.getHorasDeVuelo() + horas);
 	}
 

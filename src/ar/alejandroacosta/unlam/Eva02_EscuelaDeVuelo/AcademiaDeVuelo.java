@@ -109,7 +109,7 @@ public class AcademiaDeVuelo implements AlumnoRepository, InstructorRepository, 
 	}
 
 	@Override
-	public Boolean agregarAlumno(Alumno alumno) {
+	public Boolean agregarAlumnoAAcademia(Alumno alumno) {
 			return this.alumnos.add(alumno);
 	}
 	
@@ -177,7 +177,7 @@ public class AcademiaDeVuelo implements AlumnoRepository, InstructorRepository, 
 	
 	public Boolean darTurnoParaVueloSolo (Alumno alumno, Aeronave aeronave, Integer dia, Integer mes, Integer anio, Integer hora, Integer horasDeVuelo) {
 		Boolean seAgrego = false;
-		if (this.alumnos.contains(alumno) ) {
+		if (this.alumnos.contains(alumno) && alumno.pilotearSolo()) {
 			Turno turnoNuevo = new Turno(anio, mes, dia, hora, horasDeVuelo, alumno, null, aeronave);
 			if (this.turnos.isEmpty()) {
 				 this.turnos.add(turnoNuevo);

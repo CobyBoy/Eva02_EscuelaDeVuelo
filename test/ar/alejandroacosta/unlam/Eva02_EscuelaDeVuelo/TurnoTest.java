@@ -11,7 +11,7 @@ import ar.alejandroacosta.unlam.Eva02_EscuelaDeVuelo.Turno;
 
 public class TurnoTest {
 	@Test
-	public void queSePuedaCrearUnCurso() {
+	public void queSePuedaCrearUnTurno() {
 		Alumno alumno = new Alumno("alejandro", "acosta", 35396973,1);
 		Instructor instructor = new Instructor("Jorge", "ape", 33333, 1);
 		Aeronave aeronave = new Aeronave("css", "x22", 2, 3);
