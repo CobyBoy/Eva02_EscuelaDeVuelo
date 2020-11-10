@@ -21,7 +21,7 @@ public class AcademiaDeVueloTest {
 	public void queSePuedaAgregarUnAlumnoAUnaAcademia() {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
 		Alumno alumno = new Alumno("Alejandro","acosta", 333333, 1);
-		academia.agregarAlumno(alumno);
+		academia.agregarAlumnoAAcademia(alumno);
 		Integer cantidadDeAlumnos = academia.getAlumnos().size();
 		Integer ve = 1;
 		assertEquals(ve, cantidadDeAlumnos);
@@ -32,8 +32,8 @@ public class AcademiaDeVueloTest {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
 		Alumno alumno = new Alumno("Alejandro","acosta", 35396973, 1);
 		Alumno alumno2 = new Alumno("Alejandro","acosta", 35396973, 1);
-		academia.agregarAlumno(alumno);
-		academia.agregarAlumno(alumno2);
+		academia.agregarAlumnoAAcademia(alumno);
+		academia.agregarAlumnoAAcademia(alumno2);
 		Integer ve = 1;
 		assertTrue(academia.getAlumnos().size() == ve);
 	}
@@ -42,7 +42,7 @@ public class AcademiaDeVueloTest {
 	public void queSePuedaEliminarUnAlumnoDeLaAcademia() {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
 		Alumno alumno = new Alumno("Alejandro","acosta", 333333,1);
-		academia.agregarAlumno(alumno);
+		academia.agregarAlumnoAAcademia(alumno);
 		academia.eliminarAlumno(alumno);
 		Integer ve = 0;
 		assertTrue(academia.getAlumnos().size() == ve);
@@ -53,8 +53,8 @@ public class AcademiaDeVueloTest {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
 		Alumno alumno = new Alumno("Alejandro","acosta", 333333,1);
 		Alumno alumno2 = new Alumno("Alejandro","acosta", 4444,2);
-		academia.agregarAlumno(alumno);
-		academia.agregarAlumno(alumno2);
+		academia.agregarAlumnoAAcademia(alumno);
+		academia.agregarAlumnoAAcademia(alumno2);
 		assertTrue(academia.eliminarAlumnoPorId(2));
 		
 	}
@@ -84,7 +84,7 @@ public class AcademiaDeVueloTest {
 		Alumno alumno = new Alumno("Alejandro","acosta", 333333,1);
 		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
 		Aeronave aeronave = new Aeronave("modelo", "x22", 2, 3);
-		academia.agregarAlumno(alumno);
+		academia.agregarAlumnoAAcademia(alumno);
 		academia.agregarInstructorEnAcademia(instructor);
 		academia.agregarAeronave(aeronave);
 		Integer dia = 10;
@@ -104,7 +104,7 @@ public class AcademiaDeVueloTest {
 		Alumno alumno = new Alumno("Alejandro","acosta", 333333,1);
 		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
 		Aeronave aeronave = new Aeronave("modelo", "x22", 2, 3);
-		academia.agregarAlumno(alumno);
+		academia.agregarAlumnoAAcademia(alumno);
 		academia.agregarInstructorEnAcademia(instructor);
 		academia.agregarAeronave(aeronave);
 		Integer dia = 10;
@@ -116,7 +116,7 @@ public class AcademiaDeVueloTest {
 		Alumno alumno2 = new Alumno("Alejandro","acosta", 444,1);
 		Instructor instructor2 = new Instructor("InstrucName", "InstrucApe", 12345, 1);
 		Aeronave aeronave2 = new Aeronave("modelo", "x22", 2, 5);
-		academia.agregarAlumno(alumno2);
+		academia.agregarAlumnoAAcademia(alumno2);
 		academia.agregarInstructorEnAcademia(instructor2);
 		academia.agregarAeronave(aeronave2);
 		Integer dia2 = 10;
@@ -138,7 +138,7 @@ public class AcademiaDeVueloTest {
 		Alumno alumno = new Alumno("Alejandro","acosta", 333333,1);
 		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
 		Aeronave aeronave = new Aeronave("modelo", "x22", 2, 3);
-		academia.agregarAlumno(alumno);
+		academia.agregarAlumnoAAcademia(alumno);
 		academia.agregarInstructorEnAcademia(instructor);
 		academia.agregarAeronave(aeronave);
 		Integer dia = 10;
@@ -166,7 +166,7 @@ public class AcademiaDeVueloTest {
 		alumno.setHorasDeVuelo(21);
 		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
 		Aeronave aeronave = new Aeronave("modelo", "x22", 2, 3);
-		academia.agregarAlumno(alumno);
+		academia.agregarAlumnoAAcademia(alumno);
 		academia.agregarInstructorEnAcademia(instructor);
 		academia.agregarAeronave(aeronave);
 		Integer dia = 10;
@@ -183,7 +183,7 @@ public class AcademiaDeVueloTest {
 		Alumno alumno = new Alumno("Alejandro","acosta", 333333,1);
 		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
 		instructor.setAlumno(alumno);
-		academia.agregarAlumno(alumno);
+		academia.agregarAlumnoAAcademia(alumno);
 		assertTrue(academia.agregarInstructorConAlumno(instructor));
 		;
 	}
