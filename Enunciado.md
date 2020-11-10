@@ -12,4 +12,4 @@
   - la aeronave.  
 - Además, se necesita llevar un registro de las aeronaves y su estado (en mantenimiento o en funcionamiento), el cual depende de las horas que haya acumulado desde el mantenimiento anterior; estas se identifican con una matricula.  
 
-UML: https://lucid.app/lucidchart/8c9fb0b9-16ef-4e97-baed-f739bcff1a7c/edit?shared=true&page=0_0#?folder_id=home&browser=icon
+UML: https://lucid.app/invitations/accept/41bcdad8-7366-479a-973c-2f2213515632
