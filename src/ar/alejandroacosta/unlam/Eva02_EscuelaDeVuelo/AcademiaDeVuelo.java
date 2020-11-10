@@ -60,15 +60,25 @@ public class AcademiaDeVuelo implements AlumnoRepository, InstructorRepository, 
 	}
 
 	@Override
-	public Boolean agregarInstructor(Instructor instructor) {
+	public Boolean agregarInstructorEnAcademia(Instructor instructor) {
 		if (instructor != null) {
 			instructor.setId(this.instructores.size() + 1);
 			return this.instructores.add(instructor);
 		}
 		else return false;
 	}
+	
 	@Override
-	public Instructor buscarInstructor (Integer idInstructor) {
+	public Boolean agregarInstructorConAlumno(Instructor instructor) {
+		Alumno alumno = buscarAlumno(instructor.getAlumno().getId());
+		if (alumno != null) {
+			return this.instructores.add(instructor);
+		}
+		else return false;
+	}
+	
+	@Override
+	public Instructor buscarInstructorPorId (Integer idInstructor) {
 		for (Instructor instructorIt : instructores) {
 			instructorIt.getId().equals(idInstructor);
 			return instructorIt;
@@ -78,7 +88,7 @@ public class AcademiaDeVuelo implements AlumnoRepository, InstructorRepository, 
 	}
 
 	@Override
-	public Boolean eliminarInstructor(Instructor instructor) {
+	public Boolean eliminarInstructorDeAcademia(Instructor instructor) {
 		if (this.instructores.contains(instructor)) {
 			return this.instructores.remove(instructor);
 		}
@@ -105,8 +115,8 @@ public class AcademiaDeVuelo implements AlumnoRepository, InstructorRepository, 
 	
 	@Override
 	public Alumno buscarAlumno (Integer idAlumno) {
-		for (Alumno alumnoIt : alumnos) {
-			alumnoIt.getId().equals(idAlumno);
+		for (Alumno alumnoIt : this.alumnos) {
+			if (alumnoIt.getId().equals(idAlumno))
 			return alumnoIt;
 		}
 		return null;

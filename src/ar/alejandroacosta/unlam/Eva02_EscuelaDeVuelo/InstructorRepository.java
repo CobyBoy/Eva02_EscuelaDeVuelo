@@ -1,11 +1,15 @@
 package ar.alejandroacosta.unlam.Eva02_EscuelaDeVuelo;
 
 public interface InstructorRepository {
-	public Boolean agregarInstructor(Instructor instructor);
+	public Boolean agregarInstructorEnAcademia(Instructor instructor);
 	
-	public Instructor buscarInstructor (Integer idInstructor);
+	public Instructor buscarInstructorPorId (Integer idInstructor);
 	
-	public Boolean eliminarInstructor(Instructor instructor);
+	public Boolean eliminarInstructorDeAcademia(Instructor instructor);
 
 	public Boolean eliminarInstructorPorId(Integer idInstructor);
+
+	public Boolean agregarInstructorConAlumno(Instructor instructor);
+
+
 }

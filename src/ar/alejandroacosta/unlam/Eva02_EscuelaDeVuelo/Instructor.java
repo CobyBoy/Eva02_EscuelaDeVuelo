@@ -1,16 +1,14 @@
 package ar.alejandroacosta.unlam.Eva02_EscuelaDeVuelo;
 
-import java.util.HashSet;
 
 public class Instructor extends Persona {
 	private Integer id;
 	private Integer horasDeVuelo;
-	private HashSet<Alumno> alumno;
+	private Alumno alumno;
 	
 	public Instructor(String nombre, String apellido, Integer dni, Integer id) {
 		super(nombre, apellido, dni);
 		this.id = id;
-		this.alumno = new HashSet<Alumno>();
 		this.horasDeVuelo = 0;
 	}
 
@@ -30,6 +28,14 @@ public class Instructor extends Persona {
 		this.horasDeVuelo = horasDeVuelo;
 	}
 	
+
+	public Alumno getAlumno() {
+		return alumno;
+	}
+
+	public void setAlumno(Alumno alumno) {
+		this.alumno = alumno;
+	}
 
 	public Integer pilotear(Integer horas) {
 		this.setHorasDeVuelo(this.getHorasDeVuelo() + horas);

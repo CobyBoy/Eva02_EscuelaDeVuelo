@@ -63,7 +63,7 @@ public class AcademiaDeVueloTest {
 	public void queSePuedaAgregarUnInstructorAUnaAcademia() {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
 		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
-		academia.agregarInstructor(instructor);
+		academia.agregarInstructorEnAcademia(instructor);
 		Integer cantidadDeInstructores = academia.getInstructores().size();
 		Integer ve = 1;
 		assertEquals(ve, cantidadDeInstructores);
@@ -73,7 +73,7 @@ public class AcademiaDeVueloTest {
 	public void queSePuedaEliminarUnInstructorDeLaAcademia() {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
 		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
-		academia.eliminarInstructor(instructor);
+		academia.eliminarInstructorDeAcademia(instructor);
 		Integer ve = 0;
 		assertTrue(academia.getInstructores().size() == ve);
 	}
@@ -85,7 +85,7 @@ public class AcademiaDeVueloTest {
 		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
 		Aeronave aeronave = new Aeronave("modelo", "x22", 2, 3);
 		academia.agregarAlumno(alumno);
-		academia.agregarInstructor(instructor);
+		academia.agregarInstructorEnAcademia(instructor);
 		academia.agregarAeronave(aeronave);
 		Integer dia = 10;
 		Integer mes = 11;
@@ -105,7 +105,7 @@ public class AcademiaDeVueloTest {
 		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
 		Aeronave aeronave = new Aeronave("modelo", "x22", 2, 3);
 		academia.agregarAlumno(alumno);
-		academia.agregarInstructor(instructor);
+		academia.agregarInstructorEnAcademia(instructor);
 		academia.agregarAeronave(aeronave);
 		Integer dia = 10;
 		Integer mes = 11;
@@ -117,7 +117,7 @@ public class AcademiaDeVueloTest {
 		Instructor instructor2 = new Instructor("InstrucName", "InstrucApe", 12345, 1);
 		Aeronave aeronave2 = new Aeronave("modelo", "x22", 2, 5);
 		academia.agregarAlumno(alumno2);
-		academia.agregarInstructor(instructor2);
+		academia.agregarInstructorEnAcademia(instructor2);
 		academia.agregarAeronave(aeronave2);
 		Integer dia2 = 10;
 		Integer mes2 = 11;
@@ -139,7 +139,7 @@ public class AcademiaDeVueloTest {
 		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
 		Aeronave aeronave = new Aeronave("modelo", "x22", 2, 3);
 		academia.agregarAlumno(alumno);
-		academia.agregarInstructor(instructor);
+		academia.agregarInstructorEnAcademia(instructor);
 		academia.agregarAeronave(aeronave);
 		Integer dia = 10;
 		Integer mes = 11;
@@ -167,7 +167,7 @@ public class AcademiaDeVueloTest {
 		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
 		Aeronave aeronave = new Aeronave("modelo", "x22", 2, 3);
 		academia.agregarAlumno(alumno);
-		academia.agregarInstructor(instructor);
+		academia.agregarInstructorEnAcademia(instructor);
 		academia.agregarAeronave(aeronave);
 		Integer dia = 10;
 		Integer mes = 11;
@@ -175,6 +175,17 @@ public class AcademiaDeVueloTest {
 		Integer hora = 13;
 		Integer horasDeVuelo = 5;
 		assertTrue(academia.darTurnoParaVueloSolo(alumno, aeronave, dia, mes, anio, hora, horasDeVuelo));
+	}
+	
+	@Test
+	public void queSePuedaAgregarUnAlumnoJuntoConSuInstructor() {
+		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
+		Alumno alumno = new Alumno("Alejandro","acosta", 333333,1);
+		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
+		instructor.setAlumno(alumno);
+		academia.agregarAlumno(alumno);
+		assertTrue(academia.agregarInstructorConAlumno(instructor));
+		;
 	}
 	
 
