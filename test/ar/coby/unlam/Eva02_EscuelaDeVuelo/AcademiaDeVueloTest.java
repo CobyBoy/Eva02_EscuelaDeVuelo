@@ -15,7 +15,7 @@ public class AcademiaDeVueloTest {
 	@Test
 	public void queSePuedaAgregarUnAlumnoAUnaAcademia() {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
-		Alumno alumno = new Alumno("Alejandro","acosta", 333333);
+		Alumno alumno = new Alumno("Alejandro","acosta", 333333, 1);
 		academia.agregarAlumno(alumno);
 		Integer cantidadDeAlumnos = academia.getAlumnos().size();
 		Integer ve = 1;
@@ -25,8 +25,8 @@ public class AcademiaDeVueloTest {
 	@Test
 	public void queNoSePuedaAgregarAlumnosDuplicadosALaAcademia() {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
-		Alumno alumno = new Alumno("Alejandro","acosta", 333333);
-		Alumno alumno2 = new Alumno("Alejandro","acosta", 333333);
+		Alumno alumno = new Alumno("Alejandro","acosta", 35396973, 1);
+		Alumno alumno2 = new Alumno("Alejandro","acosta", 35396973, 1);
 		academia.agregarAlumno(alumno);
 		academia.agregarAlumno(alumno2);
 		Integer ve = 1;
@@ -36,7 +36,7 @@ public class AcademiaDeVueloTest {
 	@Test
 	public void queSePuedaEliminarUnAlumnoDeLaAcademia() {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
-		Alumno alumno = new Alumno("Alejandro","acosta", 333333);
+		Alumno alumno = new Alumno("Alejandro","acosta", 333333,1);
 		academia.agregarAlumno(alumno);
 		academia.eliminarAlumno(alumno);
 		Integer ve = 0;
@@ -46,8 +46,8 @@ public class AcademiaDeVueloTest {
 	@Test
 	public void queSePuedaEliminarUnAlumnoDeLaAcademiaPorId() {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
-		Alumno alumno = new Alumno("Alejandro","acosta", 333333);
-		Alumno alumno2 = new Alumno("Alejandro","acosta", 4444);
+		Alumno alumno = new Alumno("Alejandro","acosta", 333333,1);
+		Alumno alumno2 = new Alumno("Alejandro","acosta", 4444,2);
 		academia.agregarAlumno(alumno);
 		academia.agregarAlumno(alumno2);
 		assertTrue(academia.eliminarAlumnoPorId(2));
@@ -57,7 +57,7 @@ public class AcademiaDeVueloTest {
 	@Test
 	public void queSePuedaAgregarUnInstructorAUnaAcademia() {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
-		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1, 3);
+		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
 		academia.agregarInstructor(instructor);
 		Integer cantidadDeInstructores = academia.getInstructores().size();
 		Integer ve = 1;
@@ -67,7 +67,7 @@ public class AcademiaDeVueloTest {
 	@Test
 	public void queSePuedaEliminarUnInstructorDeLaAcademia() {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
-		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1, 3);
+		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
 		academia.eliminarInstructor(instructor);
 		Integer ve = 0;
 		assertTrue(academia.getInstructores().size() == ve);
@@ -76,8 +76,8 @@ public class AcademiaDeVueloTest {
 	@Test
 	public void queSePuedaAsignarUnTurno() {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
-		Alumno alumno = new Alumno("Alejandro","acosta", 333333);
-		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1, 3);
+		Alumno alumno = new Alumno("Alejandro","acosta", 333333,1);
+		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
 		Aeronave aeronave = new Aeronave("modelo", "x22", 2, 3);
 		academia.agregarAlumno(alumno);
 		academia.agregarInstructor(instructor);
@@ -96,8 +96,8 @@ public class AcademiaDeVueloTest {
 	@Test
 	public void queNoSePuedaAsignarUnTurnoEnElMismoDiaYHorario() {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
-		Alumno alumno = new Alumno("Alejandro","acosta", 333333);
-		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1, 3);
+		Alumno alumno = new Alumno("Alejandro","acosta", 333333,1);
+		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
 		Aeronave aeronave = new Aeronave("modelo", "x22", 2, 3);
 		academia.agregarAlumno(alumno);
 		academia.agregarInstructor(instructor);
@@ -108,8 +108,8 @@ public class AcademiaDeVueloTest {
 		Integer hora = 13;
 		Integer horasDeVuelo = 5;
 		academia.darTurnoParaVueloConInstructor(alumno, instructor, aeronave, dia, mes, anio, hora, horasDeVuelo);
-		Alumno alumno2 = new Alumno("Alejandro","acosta", 444);
-		Instructor instructor2 = new Instructor("InstrucName", "InstrucApe", 12345, 1, 4);
+		Alumno alumno2 = new Alumno("Alejandro","acosta", 444,1);
+		Instructor instructor2 = new Instructor("InstrucName", "InstrucApe", 12345, 1);
 		Aeronave aeronave2 = new Aeronave("modelo", "x22", 2, 5);
 		academia.agregarAlumno(alumno2);
 		academia.agregarInstructor(instructor2);
@@ -130,8 +130,8 @@ public class AcademiaDeVueloTest {
 	@Test
 	public void queSePuedaAsignarDiferentesTurnosUnaMismaPersona() {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
-		Alumno alumno = new Alumno("Alejandro","acosta", 333333);
-		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1, 3);
+		Alumno alumno = new Alumno("Alejandro","acosta", 333333,1);
+		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
 		Aeronave aeronave = new Aeronave("modelo", "x22", 2, 3);
 		academia.agregarAlumno(alumno);
 		academia.agregarInstructor(instructor);
@@ -157,9 +157,9 @@ public class AcademiaDeVueloTest {
 	@Test
 	public void queSePuedaAsignarTurnoUnAlumnoParaVolarSolo() {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
-		Alumno alumno = new Alumno("Alejandro","acosta", 333333);
+		Alumno alumno = new Alumno("Alejandro","acosta", 333333,1);
 		alumno.setHorasDeVuelo(21);
-		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1, 3);
+		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
 		Aeronave aeronave = new Aeronave("modelo", "x22", 2, 3);
 		academia.agregarAlumno(alumno);
 		academia.agregarInstructor(instructor);

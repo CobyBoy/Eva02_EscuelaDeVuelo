@@ -2,16 +2,16 @@ package ar.coby.unlam.Eva02_EscuelaDeVuelo;
 
 import java.util.HashSet;
 
-public class Instructor extends Persona implements PilotoRepository, AlumnoRepository{
+public class Instructor extends Persona {
 	private Integer id;
 	private Integer horasDeVuelo;
 	private HashSet<Alumno> alumno;
 	
-	public Instructor(String nombre, String apellido, Integer dni, Integer id, Integer horasDeVuelo) {
+	public Instructor(String nombre, String apellido, Integer dni, Integer id) {
 		super(nombre, apellido, dni);
 		this.id = id;
-		this.horasDeVuelo = horasDeVuelo;
 		this.alumno = new HashSet<Alumno>();
+		this.horasDeVuelo = 0;
 	}
 
 	public Integer getId() {
@@ -31,34 +31,9 @@ public class Instructor extends Persona implements PilotoRepository, AlumnoRepos
 	}
 	
 
-	@Override
-	public Boolean pilotearSolo(Integer horas) {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer pilotear(Integer horas) {
+		this.setHorasDeVuelo(this.getHorasDeVuelo() + horas);
+		return this.getHorasDeVuelo();
 	}
-
-	@Override
-	public Boolean agregarAlumno(Alumno alumno) {
-		return this.alumno.add(alumno);
-	}
-
-	@Override
-	public Boolean eliminarAlumno(Alumno alumno) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Boolean eliminarAlumnoPorId(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Alumno buscarAlumno(Alumno alumno) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	
 }

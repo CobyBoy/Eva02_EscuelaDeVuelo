@@ -1,13 +1,15 @@
 package ar.coby.unlam.Eva02_EscuelaDeVuelo;
 
 public class Alumno extends Persona implements PilotoRepository{
-	private Integer id;
+	private Integer id = 0;
 	private final Integer horasDeVueloParaVolarSolo = 20;
 	private Integer horasDeVuelo;
 	private Integer horasDeVueloQueFaltanParaVolarSolo;
 	
-	public Alumno(String nombre, String apellido, Integer dni) {
+	public Alumno(String nombre, String apellido, Integer dni, Integer id) {
 		super(nombre, apellido, dni);
+		this.id = id;
+		this.horasDeVuelo = 0;
 	}
 
 	public Integer getId() {
@@ -39,13 +41,24 @@ public class Alumno extends Persona implements PilotoRepository{
 	}
 	
 	@Override
-	public Boolean pilotearSolo(Integer horas) {
+	public Boolean pilotearSolo() {
 		return this.horasDeVuelo >= this.horasDeVueloParaVolarSolo;
 	}
 
-	public Integer pilotearConInstructor(Alumno alumno, Instructor instructor, Integer horas) {		
+	public Integer pilotear(Integer horas) {
+		 this.setHorasDeVuelo(this.getHorasDeVuelo() + horas);
+		 return this.getHorasDeVuelo();
+	}
+	public void pilotearConInstructor(Alumno alumno, Instructor instructor, Integer horas) {		
 		this.setHorasDeVuelo(this.getHorasDeVuelo() + horas);
-		return this.getHorasDeVuelo();
+		instructor.setHorasDeVuelo(instructor.getHorasDeVuelo() + horas);
+	}
+
+	
+	@Override
+	public String toString() {
+		return "Alumno [id=" + id + ", horasDeVueloParaVolarSolo=" + horasDeVueloParaVolarSolo + ", horasDeVuelo="
+				+ horasDeVuelo + ", horasDeVueloQueFaltanParaVolarSolo=" + horasDeVueloQueFaltanParaVolarSolo + "]";
 	}
 
 	@Override
@@ -56,7 +69,6 @@ public class Alumno extends Persona implements PilotoRepository{
 		result = prime * result + ((horasDeVueloParaVolarSolo == null) ? 0 : horasDeVueloParaVolarSolo.hashCode());
 		result = prime * result
 				+ ((horasDeVueloQueFaltanParaVolarSolo == null) ? 0 : horasDeVueloQueFaltanParaVolarSolo.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -84,18 +96,7 @@ public class Alumno extends Persona implements PilotoRepository{
 				return false;
 		} else if (!horasDeVueloQueFaltanParaVolarSolo.equals(other.horasDeVueloQueFaltanParaVolarSolo))
 			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
 		return true;
-	}
-	
-	@Override
-	public String toString() {
-		return "Alumno [id=" + id + ", horasDeVueloParaVolarSolo=" + horasDeVueloParaVolarSolo + ", horasDeVuelo="
-				+ horasDeVuelo + ", horasDeVueloQueFaltanParaVolarSolo=" + horasDeVueloQueFaltanParaVolarSolo + "]";
 	}
 
 }

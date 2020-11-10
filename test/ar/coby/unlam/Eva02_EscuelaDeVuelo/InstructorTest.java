@@ -8,21 +8,14 @@ public class InstructorTest {
 
 	@Test
 	public void queSeCreeUnInstructor() {
-		Instructor instructor = new Instructor("Coby", "Acosta", 3344, 1, 5);
+		Instructor instructor = new Instructor("Coby", "Acosta", 3344, 1);
 		assertNotNull(instructor);
 	}
 	
 	@Test
 	public void queAgregueHorasCuandoVueloSolo() {
-		Instructor instructor = new Instructor("Coby", "Acosta", 3344, 1, 5);
-		Integer ve = 10;
-		assertEquals(ve, instructor.pilotearSolo(5));
-	}
-
-	@Test
-	public void agregarAlumnoAInstructor() {
-		Instructor instructor = new Instructor("Coby", "Acosta", 3344, 1, 5);
-		Alumno alumno = new Alumno("Alum", "No", 33333333);
-		instructor.agregarAlumno(alumno);
+		Instructor instructor = new Instructor("Coby", "Acosta", 3344, 1);
+		Integer ve = 5;
+		assertEquals(ve, instructor.pilotear(5));
 	}
 }
