@@ -1,8 +1,10 @@
-package ar.coby.unlam.Eva02_EscuelaDeVuelo;
+package ar.alejandroacosta.unlam.Eva02_EscuelaDeVuelo;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import ar.alejandroacosta.unlam.Eva02_EscuelaDeVuelo.Instructor;
 
 public class InstructorTest {
 

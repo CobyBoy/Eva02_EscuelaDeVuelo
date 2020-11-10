@@ -1,4 +1,4 @@
-package ar.coby.unlam.Eva02_EscuelaDeVuelo;
+package ar.alejandroacosta.unlam.Eva02_EscuelaDeVuelo;
 
 public class Alumno extends Persona implements PilotoRepository{
 	private Integer id = 0;

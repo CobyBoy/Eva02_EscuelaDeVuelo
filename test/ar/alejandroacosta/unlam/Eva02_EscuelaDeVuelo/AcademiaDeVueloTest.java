@@ -1,8 +1,13 @@
-package ar.coby.unlam.Eva02_EscuelaDeVuelo;
+package ar.alejandroacosta.unlam.Eva02_EscuelaDeVuelo;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import ar.alejandroacosta.unlam.Eva02_EscuelaDeVuelo.AcademiaDeVuelo;
+import ar.alejandroacosta.unlam.Eva02_EscuelaDeVuelo.Aeronave;
+import ar.alejandroacosta.unlam.Eva02_EscuelaDeVuelo.Alumno;
+import ar.alejandroacosta.unlam.Eva02_EscuelaDeVuelo.Instructor;
 
 public class AcademiaDeVueloTest {
 

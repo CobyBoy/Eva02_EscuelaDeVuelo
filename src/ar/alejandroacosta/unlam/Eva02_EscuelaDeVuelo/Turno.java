@@ -1,4 +1,4 @@
-package ar.coby.unlam.Eva02_EscuelaDeVuelo;
+package ar.alejandroacosta.unlam.Eva02_EscuelaDeVuelo;
 
 public class Turno {
 	private Integer anio;
