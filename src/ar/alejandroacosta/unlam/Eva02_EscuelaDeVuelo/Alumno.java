@@ -1,6 +1,6 @@
 package ar.alejandroacosta.unlam.Eva02_EscuelaDeVuelo;
 
-public class Alumno extends Persona implements PilotoRepository{
+public class Alumno extends Persona implements PilotoRepository, Comparable<Alumno>{
 	private Integer id = 0;
 	private final Integer horasDeVueloParaVolarSolo = 20;
 	private Integer horasDeVuelo;
@@ -42,14 +42,18 @@ public class Alumno extends Persona implements PilotoRepository{
 	
 	@Override
 	public Boolean pilotearSolo() {
+		calcularHorasDeVueloQueFaltanParaVolarSolo();
 		return this.horasDeVuelo >= this.horasDeVueloParaVolarSolo;
 	}
 
-	public Integer pilotear(Integer horas) {
+	public void pilotear(Integer horas) {
 		 this.setHorasDeVuelo(this.getHorasDeVuelo() + horas);
-		 return this.getHorasDeVuelo();
+		 calcularHorasDeVueloQueFaltanParaVolarSolo();
 	}
-	
+	//fixear devuelve negativos
+	public void calcularHorasDeVueloQueFaltanParaVolarSolo() {
+		this.setHorasDeVueloQueFaltanParaVolarSolo(this.horasDeVueloParaVolarSolo - this.getHorasDeVuelo());
+	}
 	
 	public void pilotearConInstructor(Alumno alumno, Instructor instructor, Integer horas) {		
 		this.setHorasDeVuelo(this.getHorasDeVuelo() + horas);
@@ -61,45 +65,21 @@ public class Alumno extends Persona implements PilotoRepository{
 	@Override
 	public String toString() {
 		return "Alumno [id=" + id + ", horasDeVueloParaVolarSolo=" + horasDeVueloParaVolarSolo + ", horasDeVuelo="
-				+ horasDeVuelo + ", horasDeVueloQueFaltanParaVolarSolo=" + horasDeVueloQueFaltanParaVolarSolo + "]";
+				+ horasDeVuelo + ", horasDeVueloQueFaltanParaVolarSolo=" + horasDeVueloQueFaltanParaVolarSolo + "]"+"\n";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((horasDeVuelo == null) ? 0 : horasDeVuelo.hashCode());
-		result = prime * result + ((horasDeVueloParaVolarSolo == null) ? 0 : horasDeVueloParaVolarSolo.hashCode());
-		result = prime * result
-				+ ((horasDeVueloQueFaltanParaVolarSolo == null) ? 0 : horasDeVueloQueFaltanParaVolarSolo.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Alumno other = (Alumno) obj;
-		if (horasDeVuelo == null) {
-			if (other.horasDeVuelo != null)
-				return false;
-		} else if (!horasDeVuelo.equals(other.horasDeVuelo))
-			return false;
-		if (horasDeVueloParaVolarSolo == null) {
-			if (other.horasDeVueloParaVolarSolo != null)
-				return false;
-		} else if (!horasDeVueloParaVolarSolo.equals(other.horasDeVueloParaVolarSolo))
-			return false;
-		if (horasDeVueloQueFaltanParaVolarSolo == null) {
-			if (other.horasDeVueloQueFaltanParaVolarSolo != null)
-				return false;
-		} else if (!horasDeVueloQueFaltanParaVolarSolo.equals(other.horasDeVueloQueFaltanParaVolarSolo))
-			return false;
-		return true;
-	}
-
+	public int compareTo(Alumno o) {
+		// TODO Auto-generated method stub
+		return this.getDni() - o.getDni();
+	}	
+	
 }

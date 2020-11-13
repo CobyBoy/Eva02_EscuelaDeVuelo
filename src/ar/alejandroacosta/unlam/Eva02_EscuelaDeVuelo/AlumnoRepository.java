@@ -4,9 +4,9 @@ public interface AlumnoRepository {
 	
 	public Boolean agregarAlumnoAAcademia(Alumno alumno);
 	
-	public Alumno buscarAlumno(Integer idAlumno);
+	public Alumno buscarAlumnoPorId(Integer idAlumno);
 	
-	public Boolean eliminarAlumno(Alumno alumno);
+	public Boolean eliminarAlumnoDeAcademia(Alumno alumno) throws Exception;
 	
 	public Boolean eliminarAlumnoPorId(Integer id);;
 

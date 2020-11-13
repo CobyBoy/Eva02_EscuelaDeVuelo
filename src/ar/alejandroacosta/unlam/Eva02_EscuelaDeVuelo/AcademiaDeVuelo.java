@@ -2,19 +2,20 @@ package ar.alejandroacosta.unlam.Eva02_EscuelaDeVuelo;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.TreeSet;
 
 public class AcademiaDeVuelo implements AlumnoRepository, InstructorRepository, AeronaveRepository{
 
 	private String nombre;
-	private HashSet<Instructor> instructores;
-	private HashSet<Alumno> alumnos; 
+	private TreeSet<Instructor> instructores;
+	private TreeSet<Alumno> alumnos; 
 	private HashSet<Aeronave> aeronaves; 
 	private HashSet<Turno> turnos; 
 
 	public AcademiaDeVuelo(String nombre) {
 		this.nombre = nombre;
-		this.instructores = new HashSet<Instructor>();
-		this.alumnos = new HashSet<Alumno>();
+		this.instructores = new TreeSet<Instructor>();
+		this.alumnos = new TreeSet<Alumno>();
 		this.aeronaves = new HashSet<Aeronave>();
 		this.turnos = new HashSet<Turno>();
 	}
@@ -27,19 +28,19 @@ public class AcademiaDeVuelo implements AlumnoRepository, InstructorRepository, 
 		this.nombre = nombre;
 	}
 
-	public HashSet<Instructor> getInstructores() {
+	public TreeSet<Instructor> getInstructores() {
 		return instructores;
 	}
 
-	public void setInstructores(HashSet<Instructor> instructores) {
+	public void setInstructores(TreeSet<Instructor> instructores) {
 		this.instructores = instructores;
 	}
 
-	public HashSet<Alumno> getAlumnos() {
+	public TreeSet<Alumno> getAlumnos() {
 		return alumnos;
 	}
 
-	public void setAlumnos(HashSet<Alumno> alumnos) {
+	public void setAlumnos(TreeSet<Alumno> alumnos) {
 		this.alumnos = alumnos;
 	}
 
@@ -60,21 +61,23 @@ public class AcademiaDeVuelo implements AlumnoRepository, InstructorRepository, 
 	}
 
 	@Override
-	public Boolean agregarInstructorEnAcademia(Instructor instructor) {
-		if (instructor != null) {
-			instructor.setId(this.instructores.size() + 1);
+	public Boolean agregarInstructorEnAcademia (Instructor instructor) {
+		if (instructor != null) 
 			return this.instructores.add(instructor);
-		}
-		else return false;
+		else return false;	
 	}
 	
 	@Override
 	public Boolean agregarInstructorConAlumno(Instructor instructor) {
-		Alumno alumno = buscarAlumno(instructor.getAlumno().getId());
-		if (alumno != null) {
-			return this.instructores.add(instructor);
+		TreeSet<Alumno> alumnosDeInstructor = instructor.getAlumnos();
+		Iterator<Alumno> it = alumnosDeInstructor.iterator();
+		while (it.hasNext()) {
+			Alumno alumno = (Alumno) it.next();
+			if (buscarAlumnoPorId(alumno.getId()) != null) {
+				 return this.instructores.add(instructor);
+			}
 		}
-		else return false;
+		return false;	
 	}
 	
 	@Override
@@ -114,31 +117,33 @@ public class AcademiaDeVuelo implements AlumnoRepository, InstructorRepository, 
 	}
 	
 	@Override
-	public Alumno buscarAlumno (Integer idAlumno) {
+	public Alumno buscarAlumnoPorId (Integer idAlumno) {
 		for (Alumno alumnoIt : this.alumnos) {
 			if (alumnoIt.getId().equals(idAlumno))
 			return alumnoIt;
 		}
 		return null;
-		
 	}
 
 	@Override
-	public Boolean eliminarAlumno(Alumno alumno) {
-			return this.alumnos.remove(alumno);
+	public Boolean eliminarAlumnoDeAcademia (Alumno alumno) throws NullPointerException{
+			if (alumno != null)
+				return this.alumnos.remove(alumno);
+			else throw new NullPointerException("Ha enviado un objeto Null, no se ha eliminado el alumno");	
 	}
 
 	@Override
 	public Boolean eliminarAlumnoPorId(Integer IdAlumno) {
+		Boolean eliminado = false;
 		Iterator<Alumno> it = this.alumnos.iterator();
 		while (it.hasNext()) {
 			Alumno alumno = it.next();
 			if (alumno.getId().equals(IdAlumno)) {
 				it.remove();
-				return true;
 			}
+			eliminado = true;
 		}
-		return false;
+		return eliminado;
 	}
 
 	@Override
@@ -151,20 +156,20 @@ public class AcademiaDeVuelo implements AlumnoRepository, InstructorRepository, 
 		return this.aeronaves.remove(aeronave);
 	}
 	
-	public Boolean darTurnoParaVueloConInstructor(Alumno alumno, Instructor instructor, Aeronave aeronave, Integer dia, Integer mes, Integer anio, Integer hora, Integer horasDeVuelo) {
+	public Boolean darTurnoParaVueloConInstructor(Turno nuevoTurno) {
 		Boolean seAgrego = false;
-		if (this.alumnos.contains(alumno) && this.instructores.contains(instructor)) {
-			Turno turnoNuevo = new Turno(anio, mes, dia, hora, horasDeVuelo, alumno, instructor, aeronave);
+		if (this.alumnos.contains(nuevoTurno.getAlumno()) && this.instructores.contains(nuevoTurno.getInstructor())
+				&& this.aeronaves.contains(nuevoTurno.getAeronave())) {
 			if (this.turnos.isEmpty()) {
-				 this.turnos.add(turnoNuevo);
+				 this.turnos.add(nuevoTurno);
 				  seAgrego = true;
 			}
 			else {
 				for (Turno turnoGuardado : this.turnos) {
-				if (!turnoGuardado.getDia().equals(turnoNuevo.getDia()) ||
-						turnoGuardado.getDia().equals(turnoNuevo.getDia()) && turnoGuardado.getHora() != turnoNuevo.getHora() 
+				if (!turnoGuardado.getDia().equals(nuevoTurno.getDia()) ||
+						turnoGuardado.getDia().equals(nuevoTurno.getDia()) && turnoGuardado.getHora() != nuevoTurno.getHora() 
 					) {
-					this.turnos.add(turnoNuevo);
+					this.turnos.add(nuevoTurno);
 				};
 				};
 				seAgrego = true;
@@ -175,20 +180,19 @@ public class AcademiaDeVuelo implements AlumnoRepository, InstructorRepository, 
 		
 	};
 	
-	public Boolean darTurnoParaVueloSolo (Alumno alumno, Aeronave aeronave, Integer dia, Integer mes, Integer anio, Integer hora, Integer horasDeVuelo) {
+	public Boolean darTurnoParaVueloSolo (Turno turno) {
 		Boolean seAgrego = false;
-		if (this.alumnos.contains(alumno) && alumno.pilotearSolo()) {
-			Turno turnoNuevo = new Turno(anio, mes, dia, hora, horasDeVuelo, alumno, null, aeronave);
+		if (this.alumnos.contains(turno.getAlumno()) && turno.getAlumno().pilotearSolo()) {
 			if (this.turnos.isEmpty()) {
-				 this.turnos.add(turnoNuevo);
+				 this.turnos.add(turno);
 				  seAgrego = true;
 			}
 			else {
 				for (Turno turnoGuardado : this.turnos) {
-				if (!turnoGuardado.getDia().equals(turnoNuevo.getDia()) ||
-						turnoGuardado.getDia().equals(turnoNuevo.getDia()) && turnoGuardado.getHora() != turnoNuevo.getHora() 
+				if (!turnoGuardado.getDia().equals(turno.getDia()) ||
+						turnoGuardado.getDia().equals(turno.getDia()) && turnoGuardado.getHora() != turno.getHora() 
 					) {
-					this.turnos.add(turnoNuevo);
+					this.turnos.add(turno);
 				};
 				};
 				seAgrego = true;
@@ -197,5 +201,11 @@ public class AcademiaDeVuelo implements AlumnoRepository, InstructorRepository, 
 		};
 		
 		return seAgrego;
+	}
+
+	@Override
+	public String toString() {
+		return "AcademiaDeVuelo [nombre=" + nombre + ","+ "\n"+ "instructores=" + instructores + ","+"\n"+"alumnos=" + alumnos
+				+ ","+"\n"+ "aeronaves=" + aeronaves + ", turnos=" + turnos + "]";
 	}
 }
