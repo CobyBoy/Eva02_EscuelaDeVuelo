@@ -46,7 +46,7 @@ public class Instructor extends Persona implements Comparable<Instructor>{
 
 	@Override
 	public String toString() {
-		return "Instructor [id=" + id + ", horasDeVuelo=" + horasDeVuelo + ", alumnos=" + alumnos + "]";
+		return "INSTRUCTOR [id=" + id + ", horasDeVuelo=" + horasDeVuelo + ", alumnos=" + alumnos + "]";
 	}
 
 	@Override
@@ -88,8 +88,7 @@ public class Instructor extends Persona implements Comparable<Instructor>{
 
 	@Override
 	public int compareTo(Instructor o) {
-		// TODO Auto-generated method stub
-		return this.id - o.id;
+		return this.getDni() - o.getDni();
 	}
 	
 }

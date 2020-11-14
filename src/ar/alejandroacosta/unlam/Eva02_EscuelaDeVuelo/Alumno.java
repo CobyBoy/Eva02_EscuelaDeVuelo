@@ -43,7 +43,7 @@ public class Alumno extends Persona implements PilotoRepository, Comparable<Alum
 	@Override
 	public Boolean pilotearSolo() {
 		calcularHorasDeVueloQueFaltanParaVolarSolo();
-		return this.horasDeVuelo >= this.horasDeVueloParaVolarSolo;
+		return this.getHorasDeVuelo() >= this.horasDeVueloParaVolarSolo;
 	}
 
 	public void pilotear(Integer horas) {
@@ -53,6 +53,9 @@ public class Alumno extends Persona implements PilotoRepository, Comparable<Alum
 	//fixear devuelve negativos
 	public void calcularHorasDeVueloQueFaltanParaVolarSolo() {
 		this.setHorasDeVueloQueFaltanParaVolarSolo(this.horasDeVueloParaVolarSolo - this.getHorasDeVuelo());
+		if (this.getHorasDeVueloQueFaltanParaVolarSolo()<0) {
+			this.horasDeVueloQueFaltanParaVolarSolo = 0;
+		}
 	}
 	
 	public void pilotearConInstructor(Alumno alumno, Instructor instructor, Integer horas) {		
@@ -64,7 +67,7 @@ public class Alumno extends Persona implements PilotoRepository, Comparable<Alum
 	
 	@Override
 	public String toString() {
-		return "Alumno [id=" + id + ", horasDeVueloParaVolarSolo=" + horasDeVueloParaVolarSolo + ", horasDeVuelo="
+		return "ALUMNO [id=" + id + ", horasDeVueloParaVolarSolo=" + horasDeVueloParaVolarSolo + ", horasDeVuelo="
 				+ horasDeVuelo + ", horasDeVueloQueFaltanParaVolarSolo=" + horasDeVueloQueFaltanParaVolarSolo + "]"+"\n";
 	}
 

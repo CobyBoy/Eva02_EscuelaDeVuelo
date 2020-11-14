@@ -84,4 +84,53 @@ public class Turno {
 	public void setAeronave(Aeronave aeronave) {
 		this.aeronave = aeronave;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((anio == null) ? 0 : anio.hashCode());
+		result = prime * result + ((dia == null) ? 0 : dia.hashCode());
+		result = prime * result + ((hora == null) ? 0 : hora.hashCode());
+		result = prime * result + ((mes == null) ? 0 : mes.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Turno other = (Turno) obj;
+		if (anio == null) {
+			if (other.anio != null)
+				return false;
+		} else if (!anio.equals(other.anio))
+			return false;
+		if (dia == null) {
+			if (other.dia != null)
+				return false;
+		} else if (!dia.equals(other.dia))
+			return false;
+		if (hora == null) {
+			if (other.hora != null)
+				return false;
+		} else if (!hora.equals(other.hora))
+			return false;
+		if (mes == null) {
+			if (other.mes != null)
+				return false;
+		} else if (!mes.equals(other.mes))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "<Turno:"+"\n" +"[anio=" + anio + ", mes=" + mes + ", dia=" + dia + ", hora=" + hora + ", horasDeVuelo="
+				+ horasDeVuelo + ","+"\n" +"alumno=" + alumno + ","+"\n" +"instructor=" + instructor + ","+" \n" +"aeronave=" + aeronave + ">";
+	}
 }

@@ -7,6 +7,14 @@ import org.junit.Test;
 import ar.alejandroacosta.unlam.Eva02_EscuelaDeVuelo.Aeronave;
 
 public class AeronaveTest {
+	
+	@Test
+	public void queSePuedaCrearUnaAeronave() {
+		Aeronave aeronave = new Aeronave("modelo", "x34", 0, 0);
+		System.out.println(aeronave);
+		
+	
+	}
 
 	@Test
 	public void queCalculeHorasRestantesParaElProximoService() {

@@ -25,7 +25,11 @@ public class AcademiaDeVueloTest {
 	public void queSePuedaAgregarUnAlumnoAUnaAcademia() {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
 		Alumno alumno = new Alumno("Alejandro","acosta", 333333, 1);
-		academia.agregarAlumnoAAcademia(alumno);
+		try {
+			academia.agregarAlumnoAAcademia(alumno);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		Integer cantidadDeAlumnos = academia.getAlumnos().size();
 		Integer ve = 1;
 		assertEquals(ve, cantidadDeAlumnos);
@@ -36,84 +40,141 @@ public class AcademiaDeVueloTest {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
 		Alumno alumno = new Alumno("Alejandro","acosta", 35396973, 1);
 		Alumno alumno2 = new Alumno("Alejandro","acosta", 35396973, 1);
-		academia.agregarAlumnoAAcademia(alumno);
-		academia.agregarAlumnoAAcademia(alumno2);
+		try {
+			academia.agregarAlumnoAAcademia(alumno);
+			academia.agregarAlumnoAAcademia(alumno2);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		Integer ve = 1;
 		assertTrue(academia.getAlumnos().size() == ve);
 	}
-	
+	//falta agregar una excepcion si no lo encuentra
 	@Test
 	public void queSePuedaEliminarUnAlumnoDeLaAcademia() {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
 		Alumno alumno = new Alumno("Alejandro","acosta", 333333,1);
-		academia.agregarAlumnoAAcademia(alumno);
 		try {
+			academia.agregarAlumnoAAcademia(alumno);
 			academia.eliminarAlumnoDeAcademia(alumno);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		System.out.println(academia.getAlumnos());
 		Integer ve = 0;
 		assertTrue(academia.getAlumnos().size() == ve);
+
 	}
-	
+	//falta agregar una excepcion si no lo encuentra
 	@Test
 	public void queSePuedaEliminarUnAlumnoDeLaAcademiaPorId() {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
 		Alumno alumno = new Alumno("Alejandro","acosta", 333333,1);
 		Alumno alumno2 = new Alumno("Alejandro","acosta", 4444,2);
-		academia.agregarAlumnoAAcademia(alumno);
-		academia.agregarAlumnoAAcademia(alumno2);
+		try {
+			academia.agregarAlumnoAAcademia(alumno);
+			academia.agregarAlumnoAAcademia(alumno2);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		Integer ve = 1;
-		assertTrue(academia.eliminarAlumnoPorId(1));
+		assertTrue(academia.eliminarAlumnoPorId(alumno2.getId()));
 		Integer cantidadDeAlumnos = academia.getAlumnos().size();
 		assertEquals(ve, cantidadDeAlumnos);
-		
 	}
 
-//Academia
+//Instructor
 	@Test
 	public void queSePuedaAgregarUnInstructorAUnaAcademia() {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
 		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
-		academia.agregarInstructorEnAcademia(instructor);
+		try {
+			academia.agregarInstructorEnAcademia(instructor);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		Integer cantidadDeInstructores = academia.getInstructores().size();
 		Integer ve = 1;
 		assertEquals(ve, cantidadDeInstructores);
 	}
 	
 	@Test
+	public void queNoSePuedaAgregarUnInstructorDuplicadoAUnaAcademia() {
+		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
+		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
+		Instructor instructor2 = new Instructor("InstrucName", "InstrucApe", 12345, 2);
+		try {
+			academia.agregarInstructorEnAcademia(instructor);
+			academia.agregarInstructorEnAcademia(instructor2);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		Integer cantidadDeInstructores = academia.getInstructores().size();
+		Integer ve = 1;
+		assertEquals(ve, cantidadDeInstructores);
+	}
+	//falta agregar una excepcion si no lo encuentra
+	@Test
 	public void queSePuedaEliminarUnInstructorDeLaAcademia() {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
 		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
-		academia.eliminarInstructorDeAcademia(instructor);
+		try {
+			academia.agregarInstructorEnAcademia(instructor);
+			academia.eliminarInstructorDeAcademia(instructor);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		Integer ve = 0;
 		assertTrue(academia.getInstructores().size() == ve);
 	}
+	//falta agregar una excepcion si no lo encuentra
+	@Test
+	public void queSePuedaEliminarUnInstructorDeLaAcademiaPorId() {
+		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
+		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
+		Instructor instructor2 = new Instructor("InstrucName", "InstrucApe", 123, 2);
+		try {
+			academia.agregarInstructorEnAcademia(instructor);
+			academia.agregarInstructorEnAcademia(instructor2);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		Integer ve = 1;
+		assertTrue(academia.eliminarInstructorPorId(instructor2.getId()));
+		Integer cantidadDeAlumnos = academia.getInstructores().size();
+		assertEquals(ve, cantidadDeAlumnos);
+	}
 	
 	@Test
-	public void queSePuedaAsignarUnTurnoParaVolarConInstructor() {
+	public void queSePuedaAgregarUnAlumnoJuntoConSuInstructor() {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
 		Alumno alumno = new Alumno("Alejandro","acosta", 333333,1);
+		Alumno alumno2 = new Alumno("Alejandro","acosta", 222222,2);
+		alumno.setHorasDeVuelo(0);
+		alumno.pilotear(21);
 		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
-		Aeronave aeronave = new Aeronave("modelo", "x22", 2, 3);
-		Turno turno = new Turno(2020, 11, 10, 13, 5, alumno, instructor, aeronave);
-		academia.agregarAlumnoAAcademia(alumno);
-		academia.agregarInstructorEnAcademia(instructor);
-		academia.agregarAeronave(aeronave);
 		TreeSet<Alumno> alumnos = new TreeSet<Alumno>();
+		alumnos.add(alumno);
+		alumnos.add(alumno2);
+		instructor.setAlumnos(alumnos);
 		Iterator<Alumno> it = alumnos.iterator();
 		while (it.hasNext()) {
 			Alumno alumnoIt = (Alumno) it.next();
-			alumnos.add(alumno);
+			academia.agregarAlumnoAAcademia(alumnoIt);
 		}
-		instructor.setAlumnos(alumnos);
-		Integer ve = 1;
-		assertTrue(academia.darTurnoParaVueloConInstructor(turno));
-		Integer cantidadDeTurnos = academia.getTurnos().size();
-		assertEquals(ve, cantidadDeTurnos);
+		try {
+			assertTrue(academia.agregarInstructorConAlumno(instructor));
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
+//Aeronave 
+	@Test
+	public void k() {
+		
+	}
+
+//Turno
 	@Test
 	public void queNoSePuedaAsignarUnTurnoEnElMismoDiaYHorario() {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
@@ -123,14 +184,14 @@ public class AcademiaDeVueloTest {
 		Turno turno = new Turno(2020, 11, 10, 13, 5, alumno, instructor, aeronave);
 		academia.agregarAlumnoAAcademia(alumno);
 		academia.agregarInstructorEnAcademia(instructor);
-		academia.agregarAeronave(aeronave);
+		academia.agregarAeronaveAAcademia(aeronave);
 		academia.darTurnoParaVueloConInstructor(turno);
 		Alumno alumno2 = new Alumno("Alejandro","acosta", 444,1);
 		Instructor instructor2 = new Instructor("InstrucName", "InstrucApe", 12345, 1);
 		Aeronave aeronave2 = new Aeronave("modelo", "x22", 2, 5);
 		academia.agregarAlumnoAAcademia(alumno2);
 		academia.agregarInstructorEnAcademia(instructor2);
-		academia.agregarAeronave(aeronave2);
+		academia.agregarAeronaveAAcademia(aeronave2);
 		Turno mismoTurno = new Turno(2020, 11, 10, 13, 5, alumno, instructor, aeronave);
 		Integer ve = 1;
 		Integer cantidadDeTurnos = academia.getTurnos().size();
@@ -149,7 +210,7 @@ public class AcademiaDeVueloTest {
 		Turno turno = new Turno(2020, 11, 10, 13, 5, alumno, instructor, aeronave);
 		academia.agregarAlumnoAAcademia(alumno);
 		academia.agregarInstructorEnAcademia(instructor);
-		academia.agregarAeronave(aeronave);
+		academia.agregarAeronaveAAcademia(aeronave);
 		academia.darTurnoParaVueloConInstructor(turno);
 		Turno otroTurno = new Turno(2020, 11, 10, 14, 5, alumno, instructor, aeronave);
 		academia.darTurnoParaVueloConInstructor(otroTurno);
@@ -160,36 +221,68 @@ public class AcademiaDeVueloTest {
 	}
 	
 	@Test
-	public void queSePuedaAsignarTurnoUnAlumnoParaVolarSolo() {
+	public void queSePuedaAsignarUnTurnoParaVolarConInstructor() {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
 		Alumno alumno = new Alumno("Alejandro","acosta", 333333,1);
-		alumno.setHorasDeVuelo(21);
+		Alumno alumno2= new Alumno("Alejandro","acosta", 44,2);
 		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
 		Aeronave aeronave = new Aeronave("modelo", "x22", 2, 3);
 		Turno turno = new Turno(2020, 11, 10, 13, 5, alumno, instructor, aeronave);
-		academia.agregarAlumnoAAcademia(alumno);
-		academia.agregarInstructorEnAcademia(instructor);
-		academia.agregarAeronave(aeronave);
-		assertTrue(academia.darTurnoParaVueloSolo(turno));
+		try {
+			academia.agregarAlumnoAAcademia(alumno);
+			academia.agregarAlumnoAAcademia(alumno2);
+			academia.agregarInstructorEnAcademia(instructor);
+			academia.agregarAeronaveAAcademia(aeronave);
+			TreeSet<Alumno> alumnos = new TreeSet<Alumno>();
+			alumnos.add(alumno);
+			alumnos.add(alumno2);
+			instructor.setAlumnos(alumnos);
+			assertTrue(academia.darTurnoParaVueloConInstructor(turno));
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+		Integer ve = 1;
+		System.out.println(academia.getTurnos());
+		Integer cantidadDeTurnos = academia.getTurnos().size();
+		assertEquals(ve, cantidadDeTurnos);
 	}
 	
 	@Test
-	public void queSePuedaAgregarUnAlumnoJuntoConSuInstructor() {
+	public void queSePuedaAsignarTurnoUnAlumnoParaVolarSolo() {
 		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
 		Alumno alumno = new Alumno("Alejandro","acosta", 333333,1);
-		Alumno alumno2 = new Alumno("Alejandro","acosta", 333333,2);
-		alumno.setHorasDeVuelo(0);
-		alumno.pilotear(21);
-		Instructor instructor = new Instructor("InstrucName", "InstrucApe", 12345, 1);
-		TreeSet<Alumno> alumnos = new TreeSet<Alumno>();
-		alumnos.add(alumno);
-		alumnos.add(alumno2);
-		instructor.setAlumnos(alumnos);
-		Iterator<Alumno> it = alumnos.iterator();
-		while (it.hasNext()) {
-			Alumno alumnoIt = (Alumno) it.next();
-			academia.agregarAlumnoAAcademia(alumno2);
+		alumno.setHorasDeVuelo(20);
+		Aeronave aeronave = new Aeronave("modelo", "x22", 2, 3);
+		Turno turno = new Turno(2020, 11, 10, 13, 5, alumno, null, aeronave);
+		
+		try {
+			academia.agregarAlumnoAAcademia(alumno);
+			academia.agregarAeronaveAAcademia(aeronave);
+			assertTrue(academia.darTurnoParaVueloSolo(turno));
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
-		assertTrue(academia.agregarInstructorConAlumno(instructor));
+		
+		System.out.println(academia.getTurnos());
 	}
+	
+	@Test
+	public void queNoSePuedaAsignarTurnoUnAlumnoParaVolarSoloSiNoCumpleConLaCantidadDeHoras() {
+		AcademiaDeVuelo academia = new AcademiaDeVuelo("FlyMeToTheMoon");
+		Alumno alumno = new Alumno("Alejandro","acosta", 333333,1);
+		alumno.setHorasDeVuelo(19);
+		Aeronave aeronave = new Aeronave("modelo", "x22", 2, 3);
+		Turno turno = new Turno(2020, 11, 10, 13, 5, alumno, null, aeronave);
+		try {
+			academia.agregarAlumnoAAcademia(alumno);
+			academia.agregarAeronaveAAcademia(aeronave);
+			assertFalse(academia.darTurnoParaVueloSolo(turno));
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+	}
+	
+	
 }

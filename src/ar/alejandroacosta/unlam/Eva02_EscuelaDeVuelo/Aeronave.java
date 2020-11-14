@@ -7,6 +7,8 @@ public class Aeronave {
 	private String matricula;
 	private Integer horasDeVueloDesdeUltimoService;
 	private Integer ciclosRealizadosDesdeElUltimoService;
+	private Instructor instructor;
+	private Alumno alumnoQuePuedePilotear;
 	
 	public Aeronave(String modelo, String matricula, Integer horasDeVueloDesdeUltimoService, Integer ciclosRealizadosDesdeElUltimoService ) {
 		this.modelo = modelo;
@@ -55,16 +57,61 @@ public class Aeronave {
 		return ciclosParaRevision;
 	}
 
+
+
+	public Instructor getInstructor() {
+		return instructor;
+	}
+
+	public void setInstructor(Instructor instructor) {
+		this.instructor = instructor;
+	}
+
+	public Alumno getAlumnoQuePuedePilotear() {
+		return alumnoQuePuedePilotear;
+	}
+
+	public void setAlumnoQuePuedePilotear(Alumno alumnoQuePuedePilotear) {
+		this.alumnoQuePuedePilotear = alumnoQuePuedePilotear;
+	}
+
+	public Integer calcularHorasRestantesParaElProximoService() {
+		return this.horasDeVueloParaRevision - this.horasDeVueloDesdeUltimoService;
+	}
+
+	public Integer calcularCiclosRestantesParaElProximoService() {
+		return this.ciclosParaRevision - this.ciclosRealizadosDesdeElUltimoService;
+	}
+
+	public Boolean volar(Integer horasDeVuelo) {
+		if(this.calcularCiclosRestantesParaElProximoService() >= 0 ) {
+			this.ciclosRealizadosDesdeElUltimoService++;
+			this.horasDeVueloDesdeUltimoService = this.horasDeVueloDesdeUltimoService + horasDeVuelo;
+		}return false;
+		
+	}
+
+	@Override
+	public String toString() {
+		return "AERONAVE [horasDeVueloParaRevision=" + horasDeVueloParaRevision + ", ciclosParaRevision="
+				+ ciclosParaRevision + ", modelo=" + modelo + ", matricula=" + matricula
+				+ ", horasDeVueloDesdeUltimoService=" + horasDeVueloDesdeUltimoService
+				+ ", ciclosRealizadosDesdeElUltimoService=" + ciclosRealizadosDesdeElUltimoService + ","+"\n" +"instructor="
+				+ instructor + ","+"\n" +"alumnoQuePuedePilotear=" + alumnoQuePuedePilotear + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((alumnoQuePuedePilotear == null) ? 0 : alumnoQuePuedePilotear.hashCode());
 		result = prime * result + ((ciclosParaRevision == null) ? 0 : ciclosParaRevision.hashCode());
 		result = prime * result + ((ciclosRealizadosDesdeElUltimoService == null) ? 0
 				: ciclosRealizadosDesdeElUltimoService.hashCode());
 		result = prime * result
 				+ ((horasDeVueloDesdeUltimoService == null) ? 0 : horasDeVueloDesdeUltimoService.hashCode());
 		result = prime * result + ((horasDeVueloParaRevision == null) ? 0 : horasDeVueloParaRevision.hashCode());
+		result = prime * result + ((instructor == null) ? 0 : instructor.hashCode());
 		result = prime * result + ((matricula == null) ? 0 : matricula.hashCode());
 		result = prime * result + ((modelo == null) ? 0 : modelo.hashCode());
 		return result;
@@ -79,6 +126,11 @@ public class Aeronave {
 		if (getClass() != obj.getClass())
 			return false;
 		Aeronave other = (Aeronave) obj;
+		if (alumnoQuePuedePilotear == null) {
+			if (other.alumnoQuePuedePilotear != null)
+				return false;
+		} else if (!alumnoQuePuedePilotear.equals(other.alumnoQuePuedePilotear))
+			return false;
 		if (ciclosParaRevision == null) {
 			if (other.ciclosParaRevision != null)
 				return false;
@@ -99,6 +151,11 @@ public class Aeronave {
 				return false;
 		} else if (!horasDeVueloParaRevision.equals(other.horasDeVueloParaRevision))
 			return false;
+		if (instructor == null) {
+			if (other.instructor != null)
+				return false;
+		} else if (!instructor.equals(other.instructor))
+			return false;
 		if (matricula == null) {
 			if (other.matricula != null)
 				return false;
@@ -112,28 +169,6 @@ public class Aeronave {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Aeronave [horasDeVueloParaRevision=" + horasDeVueloParaRevision + ", ciclosParaRevision="
-				+ ciclosParaRevision + ", modelo=" + modelo + ", matricula=" + matricula
-				+ ", horasDeVueloDesdeUltimoService=" + horasDeVueloDesdeUltimoService
-				+ ", ciclosRealizadosDesdeElUltimoService=" + ciclosRealizadosDesdeElUltimoService + "]";
-	}
-
-	public Integer calcularHorasRestantesParaElProximoService() {
-		return this.horasDeVueloParaRevision - this.horasDeVueloDesdeUltimoService;
-	}
-
-	public Integer calcularCiclosRestantesParaElProximoService() {
-		return this.ciclosParaRevision - this.ciclosRealizadosDesdeElUltimoService;
-	}
-
-	public Boolean volar(Integer horasDeVuelo) {
-		if(this.calcularCiclosRestantesParaElProximoService() >= 0 ) {
-			this.ciclosRealizadosDesdeElUltimoService++;
-			this.horasDeVueloDesdeUltimoService = this.horasDeVueloDesdeUltimoService + horasDeVuelo;
-		}return false;
-		
-	}
+	
 
 }
